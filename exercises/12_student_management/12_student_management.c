@@ -16,11 +16,15 @@ int main() {
     }
     
     Student *students[3];
+    char buf[128];
     
-    for (int i = 0; i < 3; i++) 
-    {
-	    // TODO: 在这里添加你的代码
-        // I AM NOT DONE
+    for (int i = 0; i < 3; i++) {
+        students[i] = (Student*)malloc(sizeof(Student));
+        if (fgets(buf, 128, file) == NULL) break;
+        sscanf(buf, "%s %s %d", 
+               students[i]->id, 
+               students[i]->name, 
+               &students[i]->age);
     }
     fclose(file);
     
