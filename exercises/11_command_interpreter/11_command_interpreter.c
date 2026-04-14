@@ -61,7 +61,18 @@ int shell_parse(char *buf, char *argv[])
     // 功能：将输入字符串buf按空格分割成多个参数，存入argv数组
     // 返回：参数个数argc
     // 提示：使用状态机的方式处理，注意处理字符串结束符
-    // I AM NOT DONE
+    int inWord = 0;
+    for(int i = 0; i < strlen(buf); i++){
+        if(buf[i] != ' ' && !inWord){
+            inWord = 1;
+            argv[argc] = &buf[i];
+            argc++;
+        }else if(buf[i] == ' ' && inWord){
+            inWord = 0;
+            buf[i] = '\0';
+        }
+    }
+    argv[argc] = NULL;
     return argc;
 }
 
