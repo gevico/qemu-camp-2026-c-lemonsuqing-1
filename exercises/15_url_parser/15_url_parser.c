@@ -10,13 +10,39 @@
  */
 
 int parse_url(const char* url) {
-    int err = 0;
+    const char* p = url;
 
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    // 找到 '?'
+    while (*p && *p != '?') {
+        p++;
+    }
 
-exit:
-    return err;
+    if (*p == '?') {
+        p++;  // 跳过 '?'
+    }
+
+    while (*p) {
+        // 打印 key
+        printf("key = ");
+        while (*p && *p != '=') {
+            putchar(*p++);
+        }
+
+        // 跳过 '='
+        if (*p == '=') p++;
+
+        // 打印 value
+        printf(", value = ");
+        while (*p && *p != '&') {
+            putchar(*p++);
+        }
+        printf("\n");
+
+        // 跳过 '&'
+        if (*p == '&') p++;
+    }
+
+    return 0;
 }
 
 int main() {
